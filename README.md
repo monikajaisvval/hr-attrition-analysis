@@ -70,7 +70,7 @@ hr-attrition-analysis/
 ---
 
 ## Dashboard Preview
-*(Add your Tableau Public link here)*
+(![HR attrition analysis dashboard](hr_analysis.png))
 
 ---
 
