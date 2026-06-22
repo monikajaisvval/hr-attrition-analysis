@@ -91,5 +91,5 @@ jupyter notebook HR_Attrition_Analysis.ipynb
 ## Author
 **Monika Jaiswal**
 - LinkedIn: www.linkedin.com/in/monika-jaisvval
-- Naukri: naukri.com/your-profile
+- Naukri: [https://www.naukri.com/mnjuser/profile?id=&altresid]
 - Email: monikajaisvval@gmail.com
