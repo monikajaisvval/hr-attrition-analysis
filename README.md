@@ -70,7 +70,7 @@ hr-attrition-analysis/
 ---
 
 ## Dashboard Preview
-(![HR attrition analysis dashboard](hr_analysis.png))
+![HR attrition analysis dashboard](hr_analysis.png)
 
 ---
 
