@@ -1,0 +1,265 @@
+
+<style>
+  h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .phase-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin:1.8rem 0 .6rem}
+  .step{display:flex;gap:14px;margin-bottom:14px}
+  .num{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500}
+  .ng{background:#F1EFE8;color:#5F5E5A}.np{background:#EEEDFE;color:#534AB7}.nt{background:#E1F5EE;color:#0F6E56}.nc{background:#FAECE7;color:#993C1D}
+  .sb{flex:1}
+  .st{font-size:14px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px}
+  .sd{font-size:13px;color:var(--color-text-secondary);margin:0 0 6px;line-height:1.6}
+  .code{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 12px;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary);margin:6px 0;white-space:pre;overflow-x:auto}
+  .tip{border-left:2px solid #1D9E75;padding:7px 12px;font-size:13px;color:var(--color-text-secondary);margin:6px 0;line-height:1.6;border-radius:0}
+  .warn{border-left:2px solid #BA7517;padding:7px 12px;font-size:13px;color:var(--color-text-secondary);margin:6px 0;line-height:1.6;border-radius:0}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md);margin:2px 3px 2px 0}
+  .tp{background:#EEEDFE;color:#534AB7}.tt{background:#E1F5EE;color:#0F6E56}.tg{background:#F1EFE8;color:#5F5E5A}.tc{background:#FAECE7;color:#993C1D}
+  hr{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.2rem 0}
+  button{font-size:12px;color:var(--color-text-info);background:none;border:none;cursor:pointer;padding:0;margin-top:4px;display:block}
+
+  .db-wrap{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px;margin:1rem 0}
+  .db-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin:0 0 10px;text-align:center}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:10px}
+  .kpi{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px;text-align:center}
+  .kpi-val{font-size:20px;font-weight:500;color:var(--color-text-primary);display:block}
+  .kpi-lbl{font-size:10px;color:var(--color-text-tertiary);margin-top:2px}
+  .kpi-sub{font-size:11px;margin-top:2px}
+  .charts-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}
+  .chart-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px}
+  .chart-title{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin:0 0 8px}
+  .bar-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+  .bar-label{font-size:10px;color:var(--color-text-secondary);width:68px;flex-shrink:0;text-align:right}
+  .bar-bg{flex:1;background:var(--color-background-secondary);border-radius:2px;height:12px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:2px}
+  .bar-val{font-size:10px;color:var(--color-text-tertiary);width:28px;flex-shrink:0}
+  .donut-wrap{display:flex;align-items:center;gap:12px;justify-content:center;padding:4px 0}
+  .legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--color-text-secondary);margin-bottom:4px}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .scatter-area{position:relative;height:80px;margin-top:4px}
+  .s-dot{position:absolute;width:7px;height:7px;border-radius:50%;opacity:.8}
+</style>
+
+<h2 class="sr-only">Step-by-step guide to building an HR attrition Power BI dashboard, including a dashboard layout preview</h2>
+
+<div style="padding:1rem 0">
+
+<div class="phase-label">Dashboard preview — what you will build</div>
+<div class="db-wrap">
+  <p class="db-title">HR attrition analysis dashboard</p>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-val">1,470</span><div class="kpi-lbl">Total employees</div></div>
+    <div class="kpi"><span class="kpi-val" style="color:#993C1D">237</span><div class="kpi-lbl">Employees left</div></div>
+    <div class="kpi"><span class="kpi-val" style="color:#993C1D">16.1%</span><div class="kpi-lbl">Attrition rate</div></div>
+    <div class="kpi"><span class="kpi-val">36.9</span><div class="kpi-lbl">Avg age</div></div>
+  </div>
+  <div class="charts-row">
+    <div class="chart-card">
+      <p class="chart-title">Attrition by department</p>
+      <div class="bar-row"><span class="bar-label">Sales</span><div class="bar-bg"><div class="bar-fill" style="width:82%;background:#993C1D"></div></div><span class="bar-val">20.6%</span></div>
+      <div class="bar-row"><span class="bar-label">HR</span><div class="bar-bg"><div class="bar-fill" style="width:76%;background:#D85A30"></div></div><span class="bar-val">19.0%</span></div>
+      <div class="bar-row"><span class="bar-label">R&D</span><div class="bar-bg"><div class="bar-fill" style="width:55%;background:#F0997B"></div></div><span class="bar-val">13.8%</span></div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">Overtime vs attrition</p>
+      <div class="donut-wrap">
+        <div>
+          <div class="legend-item"><span class="dot" style="background:#993C1D"></span>Overtime — 30.5%</div>
+          <div class="legend-item"><span class="dot" style="background:#5DCAA5"></span>No overtime — 10.4%</div>
+          <div class="legend-item"><span class="dot" style="background:#AFA9EC"></span>Stayed</div>
+        </div>
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="28" fill="none" stroke="#993C1D" stroke-width="14" stroke-dasharray="53 123" stroke-dashoffset="0"/>
+          <circle cx="35" cy="35" r="28" fill="none" stroke="#5DCAA5" stroke-width="14" stroke-dasharray="18 158" stroke-dashoffset="-53"/>
+          <circle cx="35" cy="35" r="28" fill="none" stroke="#EEEDFE" stroke-width="14" stroke-dasharray="105 71" stroke-dashoffset="-71"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="charts-row">
+    <div class="chart-card">
+      <p class="chart-title">Attrition by age group</p>
+      <div class="bar-row"><span class="bar-label">18–25</span><div class="bar-bg"><div class="bar-fill" style="width:95%;background:#534AB7"></div></div><span class="bar-val">High</span></div>
+      <div class="bar-row"><span class="bar-label">26–35</span><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#7F77DD"></div></div><span class="bar-val">Med</span></div>
+      <div class="bar-row"><span class="bar-label">36–45</span><div class="bar-bg"><div class="bar-fill" style="width:40%;background:#AFA9EC"></div></div><span class="bar-val">Low</span></div>
+      <div class="bar-row"><span class="bar-label">46–60</span><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#CECBF6"></div></div><span class="bar-val">Low</span></div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">Income vs attrition (scatter)</p>
+      <div class="scatter-area">
+        <div class="s-dot" style="left:8%;top:10%;background:#993C1D"></div>
+        <div class="s-dot" style="left:14%;top:25%;background:#993C1D"></div>
+        <div class="s-dot" style="left:10%;top:50%;background:#993C1D"></div>
+        <div class="s-dot" style="left:18%;top:70%;background:#993C1D"></div>
+        <div class="s-dot" style="left:22%;top:35%;background:#993C1D"></div>
+        <div class="s-dot" style="left:30%;top:60%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:40%;top:20%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:50%;top:45%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:60%;top:30%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:70%;top:55%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:80%;top:15%;background:#5DCAA5"></div>
+        <div class="s-dot" style="left:88%;top:40%;background:#5DCAA5"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;border-top:0.5px solid var(--color-border-tertiary);font-size:9px;color:var(--color-text-tertiary);padding-top:2px">Low income → High income</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="phase-label">Part 1 — Install & load data</div>
+
+<div class="step">
+  <div class="num ng">1</div>
+  <div class="sb">
+    <p class="st">Download Power BI Desktop (free)</p>
+    <p class="sd">Go to microsoft.com/power-bi and download Power BI Desktop. It's completely free and runs on Windows.</p>
+    <button onclick="openLink('https://powerbi.microsoft.com/en-us/downloads/')">Download Power BI Desktop ↗</button>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num ng">2</div>
+  <div class="sb">
+    <p class="st">Load the CSV file</p>
+    <p class="sd">Open Power BI Desktop → click "Get data" → choose "Text/CSV" → select your <code>hr_attrition_clean.csv</code> file → click Load.</p>
+    <div class="tip">Use the cleaned CSV from your Python notebook, not the raw Kaggle file — it already has the Attrition_num column (0/1) which makes calculations easier.</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="phase-label">Part 2 — Create calculated columns & measures</div>
+
+<div class="step">
+  <div class="num np">3</div>
+  <div class="sb">
+    <p class="st">Create an attrition rate measure (DAX)</p>
+    <p class="sd">In the right panel, click "New measure" and type this DAX formula:</p>
+    <div class="code">Attrition Rate = 
+DIVIDE(
+    COUNTROWS(FILTER('hr_attrition_clean', 
+        'hr_attrition_clean'[Attrition] = "Yes")),
+    COUNTROWS('hr_attrition_clean'),
+    0
+)</div>
+    <div class="tip">This is your most important measure — it will power all 4 KPI cards at the top.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num np">4</div>
+  <div class="sb">
+    <p class="st">Create an age group column</p>
+    <p class="sd">Go to Table view → click "New column" and enter:</p>
+    <div class="code">Age Group = 
+SWITCH(TRUE(),
+    'hr_attrition_clean'[Age] <= 25, "18-25",
+    'hr_attrition_clean'[Age] <= 35, "26-35",
+    'hr_attrition_clean'[Age] <= 45, "36-45",
+    "46-60"
+)</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="phase-label">Part 3 — Build the visuals one by one</div>
+
+<div class="step">
+  <div class="num nt">5</div>
+  <div class="sb">
+    <p class="st">Add 4 KPI cards (top row)</p>
+    <p class="sd">Click "Card" visual 4 times and configure each:</p>
+    <div class="tag tp">Total Employees → COUNT(EmployeeNumber)</div>
+    <div class="tag tc">Employees Left → COUNTROWS where Attrition = Yes</div>
+    <div class="tag tc">Attrition Rate % → your DAX measure above</div>
+    <div class="tag tg">Avg Age → AVERAGE(Age)</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nt">6</div>
+  <div class="sb">
+    <p class="st">Attrition by department — clustered bar chart</p>
+    <p class="sd">Insert → Clustered bar chart. Set:</p>
+    <div class="code">Y-axis:  Department
+X-axis:  Attrition Rate (your DAX measure)
+Legend:  Attrition (Yes/No)
+Colors:  Yes = coral/red, No = teal</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nt">7</div>
+  <div class="sb">
+    <p class="st">Overtime vs attrition — donut chart</p>
+    <p class="sd">Insert → Donut chart. Set:</p>
+    <div class="code">Legend:  OverTime
+Values:  Attrition Rate measure
+</div>
+    <div class="tip">This will instantly show the 30.5% vs 10.4% split that is your strongest insight.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nt">8</div>
+  <div class="sb">
+    <p class="st">Attrition by age group — bar chart</p>
+    <p class="sd">Insert → Clustered bar chart. Set:</p>
+    <div class="code">Y-axis:  Age Group (column you created in step 4)
+X-axis:  Attrition Rate measure
+Sort:    Sort by attrition rate descending</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nt">9</div>
+  <div class="sb">
+    <p class="st">Income vs attrition — scatter chart</p>
+    <p class="sd">Insert → Scatter chart. Set:</p>
+    <div class="code">X-axis:   MonthlyIncome
+Y-axis:   Attrition Rate measure
+Legend:   Attrition
+Size:     COUNT(EmployeeNumber)</div>
+    <div class="warn">If the scatter looks cluttered, switch to a box-and-whisker or use a binned bar chart instead — both are easier to read in Power BI.</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="phase-label">Part 4 — Add slicers & finishing touches</div>
+
+<div class="step">
+  <div class="num nc">10</div>
+  <div class="sb">
+    <p class="st">Add slicers (interactive filters)</p>
+    <p class="sd">Insert → Slicer. Add these 3 slicers so the dashboard becomes interactive:</p>
+    <div class="tag tp">Department</div>
+    <div class="tag tp">OverTime (Yes/No)</div>
+    <div class="tag tp">Gender</div>
+    <div class="tip">Slicers are what impress recruiters most — clicking "Sales" should update all 4 visuals instantly. This shows you understand interactive reporting.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nc">11</div>
+  <div class="sb">
+    <p class="st">Style & theme the dashboard</p>
+    <p class="sd">View → Themes → choose "Executive" or "Frontier" for a clean professional look. Then:</p>
+    <div class="code">- Set report title: "HR Employee Attrition Analysis"
+- Use consistent font: Segoe UI
+- Attrition = Yes color: #C0392B (red)
+- Attrition = No color:  #1D9E75 (teal/green)
+- Add a text box with your name + date</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num nc">12</div>
+  <div class="sb">
+    <p class="st">Export & share</p>
+    <p class="sd">Take a screenshot for Naukri (Windows: Win + Shift + S). To share interactively, publish to Power BI Service (free account needed) and copy the share link.</p>
+    <button onclick="sendPrompt('How do I publish my Power BI dashboard to Power BI Service and get a shareable link?')">How to publish & share ↗</button>
+  </div>
+</div>
+
+</div>
